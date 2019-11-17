@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Texto Text);");
 
         db.execSQL("CREATE TABLE despesas " +
-                "(_id INTEGER PRIMARY KEY, descricao Text, tipoOperacao Text, valor NUMERIC(10,2));");
+                "(_id INTEGER PRIMARY KEY AUTOINCREMENT, descricao Text, tipoOperacao Text, valor NUMERIC(10,2));");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

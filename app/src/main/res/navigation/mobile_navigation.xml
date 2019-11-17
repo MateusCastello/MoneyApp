@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.ui.despesas.DespesasFragment"
-        android:label="@string/menu_despesas"
-        tools:layout="@layout/fragment_despesas" />
+        android:id="@+id/nav_operacoes"
+        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.ui.operacoes.OperacoesFragment"
+        android:label="@string/menu_operacoes"
+        tools:layout="@layout/fragment_operacoes" />
 
     <fragment
         android:id="@+id/nav_slideshow"
