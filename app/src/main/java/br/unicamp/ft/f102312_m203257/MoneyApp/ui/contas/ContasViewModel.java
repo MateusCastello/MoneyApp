@@ -1,14 +1,14 @@
-package br.unicamp.ft.f102312_m203257.MoneyApp.ui.slideshow;
+package br.unicamp.ft.f102312_m203257.MoneyApp.ui.contas;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class ContasViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public ContasViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is slideshow fragment");
     }

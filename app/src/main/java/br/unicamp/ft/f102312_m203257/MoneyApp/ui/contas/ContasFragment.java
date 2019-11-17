@@ -1,4 +1,4 @@
-package br.unicamp.ft.f102312_m203257.MoneyApp.ui.send;
+package br.unicamp.ft.f102312_m203257.MoneyApp.ui.contas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import br.unicamp.ft.f102312_m203257.MoneyApp.R;
 
-public class SendFragment extends Fragment {
+public class ContasFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private ContasViewModel contasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        contasViewModel =
+                ViewModelProviders.of(this).get(ContasViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        contasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

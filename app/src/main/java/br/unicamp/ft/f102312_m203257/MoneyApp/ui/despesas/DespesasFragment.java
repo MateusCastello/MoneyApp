@@ -1,4 +1,4 @@
-package br.unicamp.ft.f102312_m203257.MoneyApp.ui.gallery;
+package br.unicamp.ft.f102312_m203257.MoneyApp.ui.despesas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import br.unicamp.ft.f102312_m203257.MoneyApp.R;
 
-public class GalleryFragment extends Fragment {
+public class DespesasFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private DespesasViewModel despesasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        despesasViewModel =
+                ViewModelProviders.of(this).get(DespesasViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_despesas, container, false);
+        final TextView textView = root.findViewById(R.id.text_despesas);
+        despesasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

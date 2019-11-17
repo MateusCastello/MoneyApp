@@ -1,4 +1,4 @@
-package br.unicamp.ft.f102312_m203257.MoneyApp.ui.slideshow;
+package br.unicamp.ft.f102312_m203257.MoneyApp.ui.noticias;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import br.unicamp.ft.f102312_m203257.MoneyApp.R;
 
-public class SlideshowFragment extends Fragment {
+public class NoticiasFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private NoticiasViewModel noticiasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
+        noticiasViewModel =
+                ViewModelProviders.of(this).get(NoticiasViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_noticias, container, false);
+        final TextView textView = root.findViewById(R.id.text_send);
+        noticiasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
