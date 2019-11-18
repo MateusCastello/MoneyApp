@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_operacoes" />
 
     <fragment
+        android:id="@+id/nav_extrato"
+        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.operacoes.ExtratoFragment"
+        android:label="@string/menu_extrato"
+        tools:layout="@layout/fragment_extrato" />
+
+    <fragment
         android:id="@+id/nav_slideshow"
         android:name="br.unicamp.ft.f102312_m203257.MoneyApp.ui.contas.ContasFragment"
         android:label="@string/menu_contas"

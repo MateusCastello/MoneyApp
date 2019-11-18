@@ -16,6 +16,10 @@
             android:id="@+id/nav_contas"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/menu_contas" />
+        <item
+            android:id="@+id/nav_extrato"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/menu_extrato" />
     </group>
 
     <item android:title="Notícias">

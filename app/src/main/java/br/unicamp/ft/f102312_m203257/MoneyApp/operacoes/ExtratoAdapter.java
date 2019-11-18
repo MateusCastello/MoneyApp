@@ -1,6 +1,7 @@
 package br.unicamp.ft.f102312_m203257.MoneyApp.operacoes;
 
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import br.unicamp.ft.f102312_m203257.MoneyApp.R;
 
 public class ExtratoAdapter extends RecyclerView.Adapter {
+
     private ArrayList<Operacao> operacoes;
     MyOnItemClickListener itemClickListener;
     MyOnLongItemClickListener myOnLongItemClickListener;
 
-    public ExtratoAdapter(ArrayList<Operacao> alunos) {
+    public ExtratoAdapter(ArrayList<Operacao> operacoes) {
         this.operacoes = operacoes;
     }
 
@@ -45,16 +47,36 @@ public class ExtratoAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_layout, parent, false);
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (itemClickListener != null) {
+                    TextView txtNome = view.findViewById(R.id.txtDescricao);
+                    itemClickListener.MyOnItemClick(txtNome.getText().toString());
+                }
+            }
+        });
+        return new ExtratoViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+        ((ExtratoViewHolder) holder).Bind(operacoes.get(position));
 
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                myOnLongItemClickListener.myOnLongItemClick(position);
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount(){
+        //return 8;
         return operacoes.size();
     }
 
