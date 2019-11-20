@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public class ExtratoFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     ExtratoAdapter mAdapter;
+    TextView txtSaldo;
     private DatabaseHelper dbHelper;
     private SQLiteDatabase sqLiteDatabase;
     public ExtratoFragment() {
@@ -38,7 +40,7 @@ public class ExtratoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_extrato, container, false);
-
+        txtSaldo = (TextView)view.findViewById(R.id.txtSaldo);
 
         if(view == null) {
             return inflater.inflate(R.layout.fragment_extrato, container, false);
@@ -56,16 +58,38 @@ public class ExtratoFragment extends Fragment {
     }
 
     private void carregarExtrato(View view){
+        Double receitas = 0.0;
+        Double despesas = 0.0;
         String sql = "Select * from despesas";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
         ArrayList<Operacao> operacoes = new ArrayList<Operacao>();
         if (cursor.moveToFirst()) {
             do {
-                Operacao operacao = new Operacao(cursor.getString(1),cursor.getString(2),Double.parseDouble(cursor.getString(3)));
+                Operacao operacao = new Operacao(cursor.getString(1),cursor.getString(2).equals("D") ? R.drawable.ic_remove_black_24dp : R.drawable.ic_add_black_24dp,Double.parseDouble(cursor.getString(3)));
                 operacoes.add(operacao);
             } while (cursor.moveToNext());
         }
 
+        sql = "Select SUM(valor) as valor from despesas where tipoOperacao='D' ";
+
+
+        Cursor cursorDesp = sqLiteDatabase.rawQuery(sql, null);
+        if (cursorDesp.moveToFirst()) {
+            do {
+                 despesas = cursorDesp.getDouble(0);
+            } while (cursorDesp.moveToNext());
+        }
+
+        sql = "Select SUM(valor) as valor from despesas where tipoOperacao='C'";
+        Cursor cursorRec = sqLiteDatabase.rawQuery(sql, null);
+        if (cursorRec.moveToFirst()) {
+            do {
+                 receitas = cursorRec.getDouble(0);
+            } while (cursorRec.moveToNext());
+        }
+
+        Double total = receitas - despesas;
+        txtSaldo.setText("Saldo Total: " + total.toString());
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

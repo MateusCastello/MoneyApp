@@ -7,9 +7,9 @@ public class Operacao {
     private String tipoOp;
     private Double valor;
 
-    public Operacao(String descricao, String tipoOp, Double valor) {
+    public Operacao(String descricao, int foto, Double valor) {
         this.descricao = descricao;
-        this.tipoOp = tipoOp;
+        this.foto = foto;
         this.valor = valor;
 
     }

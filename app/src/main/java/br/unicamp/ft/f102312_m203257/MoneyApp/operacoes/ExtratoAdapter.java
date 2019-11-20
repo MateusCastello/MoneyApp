@@ -34,7 +34,7 @@ public class ExtratoAdapter extends RecyclerView.Adapter {
             super(itemView);
             imgOp = itemView.findViewById(R.id.imgOp);
             txtDescricao = itemView.findViewById(R.id.txtDescricao);
-            txtValor = itemView.findViewById(R.id.txtDescricao);
+            txtValor = itemView.findViewById(R.id.txtValor);
         }
 
         public void Bind(final Operacao operacao) {
