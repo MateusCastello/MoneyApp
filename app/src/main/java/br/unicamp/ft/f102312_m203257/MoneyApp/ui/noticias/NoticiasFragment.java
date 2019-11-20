@@ -45,10 +45,11 @@ public class NoticiasFragment extends Fragment {
         noticiasViewModel =
                 ViewModelProviders.of(this).get(NoticiasViewModel.class);
         View root = inflater.inflate(R.layout.fragment_noticias, container, false);
-        mRecyclerView = getActivity().findViewById(R.id.recyclerViewNoticias);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setNestedScrollingEnabled(false);
+//        mRecyclerView = root.findViewById(R.id.recyclerViewNoticias);
+//        mLayoutManager = new LinearLayoutManager(root.getContext());
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//        mRecyclerView.setNestedScrollingEnabled(false);
         LoadJson();
         return root;
     }
