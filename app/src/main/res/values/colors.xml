@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#2e86de</color>
     <color name="colorAccent">#ff6b6b</color>
     <color name="UfoGreen">#009432</color>
+    <color name="Beige">#ecf0f1</color>
+    <color name="CinzaEscuro">#34495e</color>
+    <color name="MidnightBlue">#2c3e50</color>
 </resources>

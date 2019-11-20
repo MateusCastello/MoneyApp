@@ -8,7 +8,6 @@ public class OperacoesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-
     public OperacoesViewModel() {
         mText = new MutableLiveData<>();
         //mText.setValue("This is gallery fragment");*/
