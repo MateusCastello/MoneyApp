@@ -14,22 +14,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ClientApi {
 
-    public static final String URL_BASE = "http://newsapi.org/v2/";
+    public static final String BASE_URL = "http://newsapi.org/v2/";
     public static Retrofit retrofit;
 
     public static Retrofit getClientApi(){
         if (retrofit==null){
-            retrofit = new Retrofit.Builder().baseUrl(URL_BASE)
-                    .client(getUnsafeHttpClient().build())
+            retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                    .client(getUnsafeOkHttpClient().build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
 
-    public static OkHttpClient.Builder getUnsafeHttpClient(){
+    public static OkHttpClient.Builder getUnsafeOkHttpClient(){
         try {
-            // Cria um trust manager que não valida cadeias de certificado
+            // Create a trust manager that does not validate certificate chains
             final TrustManager[] trustAllCerts = new TrustManager[]{
                     new X509TrustManager() {
                         @Override
@@ -47,10 +47,11 @@ public class ClientApi {
                     }
             };
 
-            // Seta a confiança para todos os certificados disponíveis
+            // Install the all-trusting trust manager
             final SSLContext sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
+            // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -65,6 +66,5 @@ public class ClientApi {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }

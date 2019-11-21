@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import br.unicamp.ft.f102312_m203257.MoneyApp.Adapter;
 import br.unicamp.ft.f102312_m203257.MoneyApp.MainActivity;
+import br.unicamp.ft.f102312_m203257.MoneyApp.NoticiasActivity;
 import br.unicamp.ft.f102312_m203257.MoneyApp.R;
 import br.unicamp.ft.f102312_m203257.MoneyApp.newsapi.ClientApi;
 import br.unicamp.ft.f102312_m203257.MoneyApp.newsapi.InterfaceAPI;
@@ -50,47 +51,48 @@ public class NoticiasFragment extends Fragment {
 //        mRecyclerView.setLayoutManager(mLayoutManager);
 //        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 //        mRecyclerView.setNestedScrollingEnabled(false);
-        LoadJson();
+//        LoadJson();
         return root;
     }
 
 
 
-    public void LoadJson(){
-        InterfaceAPI apiInterface = ClientApi.getClientApi().create(InterfaceAPI.class);
-        String pais = getPais();
-        Call<Noticias> call;
-        call = apiInterface.getNoticias(pais,API_KEY);
-
-        call.enqueue(new Callback<Noticias>() {
-            @Override
-            public void onResponse(Call<Noticias> call, Response<Noticias> response) {
-                if (response.isSuccessful() && response.body().getArtigo()!=null){
-
-                    if(!artigos.isEmpty()){
-                        artigos.clear();
-                    }
-
-                    artigos = response.body().getArtigo();
-                    mAdapter = new Adapter(artigos, getActivity());
-                    mRecyclerView.setAdapter(mAdapter);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getActivity(), "Nada encontrado!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Noticias> call, Throwable t) {
-
-            }
-        });
-    }
-
-    public static String getPais(){
-        Locale locale = Locale.getDefault();
-        String pais = String.valueOf(locale.getCountry());
-        return pais.toLowerCase();
-    }
+//    public void LoadJson (){
+//        InterfaceAPI interfaceAPI = ClientApi.getClientApi().create(InterfaceAPI.class);
+//        String pais = "br";
+//        String categoria = "business";
+//
+//        Call<Noticias> call;
+//        call = interfaceAPI.getNoticias(pais,categoria,API_KEY);
+//
+//        call.enqueue(new Callback<Noticias>() {
+//            @Override
+//            public void onResponse(Call<Noticias> call, Response<Noticias> response) {
+//                if (response.isSuccessful()&& response.body().getArtigo()!=null){
+//                    if(!artigos.isEmpty()){
+//                        artigos.clear();
+//                    }
+//                    artigos = response.body().getArtigo();
+//                    mAdapter = new Adapter(artigos, NoticiasActivity.this);
+//                    mRecyclerView.setAdapter(mAdapter);
+//                    mAdapter.notifyDataSetChanged();
+//
+//                } else {
+//                    Toast.makeText(NoticiasActivity.this, "Nada encontrado!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Noticias> call, Throwable t) {
+//
+//            }
+//        });
+//    }
+//
+//    public static String getPais(){
+//        Locale locale = Locale.getDefault();
+//        String pais = String.valueOf(locale.getCountry());
+//        return pais.toLowerCase();
+//    }
 
 }

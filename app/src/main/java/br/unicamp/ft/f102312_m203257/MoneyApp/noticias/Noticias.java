@@ -11,11 +11,11 @@ public class Noticias {
     @Expose
     private String status;
     //Quantos artigos foram retornados
-    @SerializedName("numeroDeResultados")
+    @SerializedName("totalResults")
     @Expose
     private int numeroDeResultados;
     //Lista contendo os artigos
-    @SerializedName("artigos")
+    @SerializedName("articles")
     @Expose
     private List<Artigo> artigo;
 

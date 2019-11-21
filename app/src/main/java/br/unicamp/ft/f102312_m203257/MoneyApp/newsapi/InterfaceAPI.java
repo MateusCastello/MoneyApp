@@ -8,7 +8,8 @@ import retrofit2.http.Query;
 public interface InterfaceAPI {
     @GET("top-headlines")
     Call<Noticias> getNoticias(
-            @Query("country") String country,
+            @Query("country") String pais,
+            @Query("category") String categoria,
             @Query("apiKey") String apiKey
     );
 }

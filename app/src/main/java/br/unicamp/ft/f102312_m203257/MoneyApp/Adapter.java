@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,13 +23,15 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
+import br.unicamp.ft.f102312_m203257.MoneyApp.newsapi.Colors;
+import br.unicamp.ft.f102312_m203257.MoneyApp.newsapi.Time;
 import br.unicamp.ft.f102312_m203257.MoneyApp.noticias.Artigo;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>  {
 
     private List<Artigo> artigos;
     private Context context;
-    private OnItemClickListener OnItemClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public Adapter(List<Artigo> artigos, Context context) {
         this.artigos = artigos;
@@ -41,7 +42,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>  {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.noticia, parent, false);
-        return new MyViewHolder(view, OnItemClickListener);
+        return new MyViewHolder(view, onItemClickListener);
     }
 
     @Override
@@ -50,6 +51,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>  {
         Artigo modelo = artigos.get(posicao);
 
         RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(Colors.getRandomDrawbleColor());
+        requestOptions.error(Colors.getRandomDrawbleColor());
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
         requestOptions.centerCrop();
 
@@ -68,10 +71,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>  {
                     }
                 })
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .into(holder.mImageView);
+                .into(holder.imageView);
         holder.titulo.setText(modelo.getTitulo());
         holder.descricao.setText(modelo.getDescricao());
-        holder.fonte.setText(modelo.getPublicadoEm());
+        holder.fonte.setText(modelo.getFonte().getNome());
+        holder.horas.setText(Time.DateToTimeFormat(modelo.getPublicadoEm()));
+        holder.publicadoEm.setText(Time.DateFormat(modelo.getPublicadoEm()));
 
     }
 
@@ -80,31 +85,34 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>  {
         return artigos.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
     public interface OnItemClickListener{
         void onItemClick(View view, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView titulo, descricao,  publicadoEm, fonte, horas;
-        ImageView mImageView;
-        OnItemClickListener mOnItemClickListener;
+        TextView titulo, descricao, publicadoEm, fonte, horas;
+        ImageView imageView;
+        OnItemClickListener onItemClickListener;
 
-        public MyViewHolder (View itemView, OnItemClickListener mOnItemClickListener){
+        public MyViewHolder (View itemView, OnItemClickListener onItemClickListener){
             super(itemView);
 
             itemView.setOnClickListener(this);
-            mImageView = itemView.findViewById(R.id.imagem);
+            imageView = itemView.findViewById(R.id.imagem);
             horas = itemView.findViewById(R.id.horas);
             titulo = itemView.findViewById(R.id.titulo);
             descricao = itemView.findViewById(R.id.descricao);
             publicadoEm = itemView.findViewById(R.id.publicadoEm);
             fonte = itemView.findViewById(R.id.fonte);
-            this.mOnItemClickListener = mOnItemClickListener;
+            this.onItemClickListener = onItemClickListener;
         }
         @Override
-        public void onClick(View view) {
-            mOnItemClickListener.onItemClick(view, getAdapterPosition());
+        public void onClick(View v) {
+            onItemClickListener.onItemClick(v, getAdapterPosition());
 
         }
     }

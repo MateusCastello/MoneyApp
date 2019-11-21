@@ -3,43 +3,41 @@ package br.unicamp.ft.f102312_m203257.MoneyApp.noticias;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.xml.transform.Source;
-
 public class Artigo {
     //Estrutura básica d eum artigo retornado pela News API
-    @SerializedName("fonte")
+    @SerializedName("source")
     @Expose
-    private Source fonte;
+    private Fonte fonte;
 
-    @SerializedName("autor")
+    @SerializedName("author")
     @Expose
     private String autor;
 
-    @SerializedName("descricao")
-    @Expose
-    private String descricao;
-
-    @SerializedName("titulo")
+    @SerializedName("title")
     @Expose
     private String titulo;
+
+    @SerializedName("description")
+    @Expose
+    private String descricao;
 
     @SerializedName("url")
     @Expose
     private String url;
 
-    @SerializedName("urlDaImagem")
+    @SerializedName("urlToImage")
     @Expose
     private String urlDaImagem;
 
-    @SerializedName("publicadoEm")
+    @SerializedName("publishedAt")
     @Expose
     private String publicadoEm;
 
-    public Source getFonte() {
+    public Fonte getFonte() {
         return fonte;
     }
 
-    public void setFonte(Source fonte) {
+    public void setFonte(Fonte fonte) {
         this.fonte = fonte;
     }
 

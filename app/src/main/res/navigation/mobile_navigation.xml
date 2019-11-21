@@ -41,9 +41,9 @@
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_noticias"
-        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.ui.noticias.NoticiasFragment"
+        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.NoticiasActivity"
         android:label="@string/menu_noticias"
-        tools:layout="@layout/fragment_noticias" />
+        tools:layout="@layout/activity_noticias" />
 </navigation>
