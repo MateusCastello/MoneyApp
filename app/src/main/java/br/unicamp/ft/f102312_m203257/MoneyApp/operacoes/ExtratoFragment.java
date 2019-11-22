@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +63,7 @@ public class ExtratoFragment extends Fragment {
         Double despesas = 0.0;
         String sql = "Select * from despesas";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
-        ArrayList<Operacao> operacoes = new ArrayList<Operacao>();
+        final ArrayList<Operacao> operacoes = new ArrayList<Operacao>();
         if (cursor.moveToFirst()) {
             do {
                 Operacao operacao = new Operacao(cursor.getString(1),cursor.getString(2).equals("D") ? R.drawable.ic_remove_black_24dp : R.drawable.ic_add_black_24dp,Double.parseDouble(cursor.getString(3)));
@@ -95,6 +96,21 @@ public class ExtratoFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mAdapter = new ExtratoAdapter(new ArrayList(operacoes));
+        mAdapter.setItemLongClickListener(new ExtratoAdapter.MyOnLongItemClickListener() {
+            @Override
+            public void myOnLongItemClick(int position) {
+                Operacao op = operacoes.get(position);
+                deleteOperacao(op);
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void deleteOperacao(Operacao operacao){
+        sqLiteDatabase.execSQL("Delete from despesas where descricao = " + "'" + operacao.getDescricao() + "'" + " and valor = " + "'" + operacao.getValor().toString() +"'");
+
+        Toast.makeText(getContext(), "Operação removida", Toast.LENGTH_LONG).show();
+
+        carregarExtrato(getView());
     }
 }
