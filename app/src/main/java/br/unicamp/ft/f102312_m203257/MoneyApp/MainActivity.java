@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 import br.unicamp.ft.f102312_m203257.MoneyApp.ui.operacoes.OperacoesActivity;
 
 import android.view.Menu;

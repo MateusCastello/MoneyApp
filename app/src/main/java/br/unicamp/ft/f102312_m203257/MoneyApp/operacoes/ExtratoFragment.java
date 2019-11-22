@@ -107,8 +107,6 @@ public class ExtratoFragment extends Fragment {
     }
 
     private void deleteOperacao(Operacao operacao){
-        //sqLiteDatabase.execSQL("Delete from despesas where descricao = " + "'" + operacao.getDescricao() + "'" + " and valor = " + "'" + operacao.getValor().toString() +"'");
-
         sqLiteDatabase.execSQL("Delete from despesas where _id = " + operacao.getId());
         Toast.makeText(getContext(), "Operação removida", Toast.LENGTH_LONG).show();
 
