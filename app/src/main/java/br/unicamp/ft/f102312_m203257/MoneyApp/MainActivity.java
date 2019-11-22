@@ -1,5 +1,6 @@
 package br.unicamp.ft.f102312_m203257.MoneyApp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import br.unicamp.ft.f102312_m203257.MoneyApp.ui.operacoes.OperacoesActivity;
 
 import android.view.Menu;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, OperacoesActivity.class));
             }
         });
 
