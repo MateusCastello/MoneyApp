@@ -17,11 +17,11 @@
         android:label="@string/menu_operacoes"
         tools:layout="@layout/fragment_operacoes" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_extrato"
-        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.operacoes.ExtratoFragment"
+        android:name="br.unicamp.ft.f102312_m203257.MoneyApp.operacoes.ExtratoActivity"
         android:label="@string/menu_extrato"
-        tools:layout="@layout/fragment_extrato" />
+        tools:layout="@layout/activity_extrato" />
 
     <fragment
         android:id="@+id/nav_slideshow"
