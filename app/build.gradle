@@ -43,4 +43,8 @@ dependencies {
 //Times Formater
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 }
