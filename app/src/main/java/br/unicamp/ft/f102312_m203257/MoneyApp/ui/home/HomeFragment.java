@@ -2,6 +2,7 @@ package br.unicamp.ft.f102312_m203257.MoneyApp.ui.home;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,16 @@ public class HomeFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(pieEntries, "Balanço dos gastos");
         PieData data = new PieData(dataSet);
 
+        final int[] MY_COLORS = {Color.rgb(192,0,0), Color.rgb(0,200,127), Color.rgb(255,192,0),
+                Color.rgb(127,127,127), Color.rgb(146,208,80), Color.rgb(0,176,80), Color.rgb(79,129,189)};
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+        for(int c: MY_COLORS) colors.add(c);
+
+        dataSet.setColors(colors);
+
         PieChart chart = getActivity().findViewById(R.id.homeChart);
+        chart.setEntryLabelTextSize(12);
         chart.setData(data);
         chart.invalidate();
     }
