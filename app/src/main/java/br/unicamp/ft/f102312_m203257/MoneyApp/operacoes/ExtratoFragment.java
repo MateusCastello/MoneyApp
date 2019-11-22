@@ -66,7 +66,7 @@ public class ExtratoFragment extends Fragment {
         final ArrayList<Operacao> operacoes = new ArrayList<Operacao>();
         if (cursor.moveToFirst()) {
             do {
-                Operacao operacao = new Operacao(cursor.getString(1),cursor.getString(2).equals("D") ? R.drawable.ic_remove_black_24dp : R.drawable.ic_add_black_24dp,Double.parseDouble(cursor.getString(3)));
+                Operacao operacao = new Operacao(cursor.getInt(0),cursor.getString(1),cursor.getString(2).equals("D") ? R.drawable.ic_remove_black_24dp : R.drawable.ic_add_black_24dp,Double.parseDouble(cursor.getString(3)));
                 operacoes.add(operacao);
             } while (cursor.moveToNext());
         }
@@ -107,8 +107,9 @@ public class ExtratoFragment extends Fragment {
     }
 
     private void deleteOperacao(Operacao operacao){
-        sqLiteDatabase.execSQL("Delete from despesas where descricao = " + "'" + operacao.getDescricao() + "'" + " and valor = " + "'" + operacao.getValor().toString() +"'");
+        //sqLiteDatabase.execSQL("Delete from despesas where descricao = " + "'" + operacao.getDescricao() + "'" + " and valor = " + "'" + operacao.getValor().toString() +"'");
 
+        sqLiteDatabase.execSQL("Delete from despesas where _id = " + operacao.getId());
         Toast.makeText(getContext(), "Operação removida", Toast.LENGTH_LONG).show();
 
         carregarExtrato(getView());

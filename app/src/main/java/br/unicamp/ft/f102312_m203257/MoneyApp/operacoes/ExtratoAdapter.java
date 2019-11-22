@@ -76,7 +76,6 @@ public class ExtratoAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount(){
-        //return 8;
         return operacoes.size();
     }
 
